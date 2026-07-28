@@ -1,0 +1,22 @@
+# The build recipe. ONE declaration, read by hanzoai/ci (GitHub lane) and by
+# platform.hanzo.ai (POST /v1/runner, in-cluster) — neither of which needs a
+# Dockerfile, because neither of these artifacts is a container image.
+#
+# `main:` is the zero-config Go lane. `run:` + `out:` is every other toolchain:
+# the command that builds, and the glob of what it produced. `image:` names the
+# toolchain the platform runs that command in (on a GitHub runner the toolchain
+# is the runner, so the GitHub lane ignores it).
+binaries:
+  - name: hanzo-demo
+    main: ./cmd/demo
+    platforms: [linux/amd64, darwin/arm64]
+
+  - name: hanzo-demo-sdk
+    image: node:22-bookworm
+    run: npm install --no-audit --no-fund --loglevel=error && npm run build && npm pack --pack-destination .
+    out: "*.tgz"
+
+# Where the artifacts land: hanzoai/s3, as
+# https://s3.hanzo.ai/plugins/<owner>/<repo>/<tag>/ with a binaries.json index
+# beside them (url + sha256 for each), which is the one file a host reads.
+bucket: plugins
