@@ -1,5 +1,7 @@
 # build-demo
 
+[![Open in Hanzo](https://hanzo.app/badges/open-in-hanzo.svg)](https://hanzo.app/dev/open?repo=github.com/hanzoai/build-demo&ref=main&action=open) [![Edit with Hanzo](https://hanzo.app/badges/edit-with-hanzo.svg)](https://hanzo.app/dev/open?repo=github.com/hanzoai/build-demo&ref=main&action=edit) [![Deploy with Hanzo](https://hanzo.app/badges/deploy-with-hanzo.svg)](https://hanzo.app/dev/open?repo=github.com/hanzoai/build-demo&ref=main&action=deploy)
+
 The smallest proof that `hanzo.app` builds software, not just container images.
 
 `hanzo.yml` declares two artifacts and no Dockerfile:
